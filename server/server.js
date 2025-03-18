@@ -47,7 +47,21 @@ db.connect(err => {
           image VARCHAR(255) NOT NULL
         )
       `;
+      const createTableQuery1 = `
+        CREATE TABLE IF NOT EXISTS user (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(255) NOT NULL,
+            passwords TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    `;
+
       db.query(createTableQuery, (err) => {
+        if (err) throw err;
+        console.log('Table images created or already exists.');
+        
+      });
+      db.query(createTableQuery1, (err) => {
         if (err) throw err;
         console.log('Table images created or already exists.');
       });
